@@ -1,29 +1,31 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 const App = () => {
 
-  const [data, setData] = useState(null);
-  const [reset, setReset] = useState(false);
-
-  const clickHandler = () => {
-    reset ? setReset(false) : setReset(true);
-    console.log(reset)
-  }
+  //'https://pokeapi.co/api/v2/pokemon'
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-      //'https://jsonplaceholder.typicode.com/users'
-      //https://pokeapi.co/api/v2/pokemon/ditto
-      .then(res => res.json())
-      .then(data => { setData(data);  console.log(data.name)});
-  }, {});
+    async function fetchData() {
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151');
+      const JSONResponse = await response.json(); 
+      setData(JSONResponse.results);
+    }
+    fetchData();
+  }, []);
 
   return (
-    <Fragment>
-      {data.name}
-      <button onClick={clickHandler}>PRESS ME WILL YA</button>
-    </Fragment>
+    <>
+      <main>
+        {data.map(item => {
+          return (
+            <li key={item.url}>{item.name}</li>
+          )
+        })}
+        <h1>Pokédex</h1>
+      </main>
+    </>
   );
 }
 
