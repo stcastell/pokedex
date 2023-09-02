@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import NamesList from './Components/NamesList';
+import Sprite from './Components/Sprite'
 const App = () => {
 
   //'https://pokeapi.co/api/v2/pokemon'
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState({
+    name: 'bulbasaur',
+    url: 'https://pokeapi.co/api/v2/pokemon/1/'
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -15,16 +21,14 @@ const App = () => {
     fetchData();
   }, []);
 
+  const getFilteredItemHandler = item => { 
+    setFilteredData(item);
+  }
+
   return (
     <>
-      <main>
-        {data.map(item => {
-          return (
-            <li key={item.url}>{item.name}</li>
-          )
-        })}
-        <h1>Pokédex</h1>
-      </main>
+      <Sprite data={filteredData}/>
+      <NamesList data={data} onGetFilteredItem={getFilteredItemHandler}/>
     </>
   );
 }

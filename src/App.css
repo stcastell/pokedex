@@ -1,8 +1,14 @@
+@font-face {
+  font-family: 'Pkmn';
+  src: url('./fonts/Pokemon\ Classic.ttf');
+  /* https://dl.dafont.com/dl/?f=pokemon_classic */
+}
 *{
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Pkmn', sans-serif;
+
 }
 body{
   background-color: rgb(41, 41, 41);
