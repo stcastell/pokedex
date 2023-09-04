@@ -1,24 +1,32 @@
 import styles from './Sprite.module.css';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function Sprite(props) {
 
-    const [pokemonData, setPokemonData] = useState();
+    const selectedPokemonData = props.pokeList.filter(pokemon => pokemon.name === props.selectedPokemon)[0];
+    const [name, setName] = useState('');
+
 
     useEffect(() => {
-        async function fetchSpriteURL(url) {
-            const fetchResponse = await fetch(url);
-            const response = await fetchResponse.json().then();
-            return (response.sprites.front_default);
+        async function fetchSelectedPokemon() {
+            const response = await fetch(selectedPokemonData.url)
+            const jsonResponse = await response.json();
+            setName(jsonResponse.sprites.front_default);
         }
-        setPokemonData(fetchSpriteURL(props.data.url));
-        
-        console.log(pokemonData);
-    }, []);
+        fetchSelectedPokemon();
+    }, [props.selectedPokemon])
+
+    const clickHandler = () => { 
+        alert(name)
+    }
 
     return (
-        <>
-            {props.data.name}
-        </>
+        <div className={styles.sprite}>
+            <div className={styles.screen}>
+                <motion.img src={name} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            </div>
+            <button className={styles.details} onClick={clickHandler}>Details</button>
+        </div>
     );
 }

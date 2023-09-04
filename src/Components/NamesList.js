@@ -1,23 +1,21 @@
 import styles from './NamesList.module.css';
-import { useState } from 'react';
 
 export default function NamesList(props) {
 
-    const clickHandler = e => {
-        const filteredData = props.data.filter(item => item.name == e.target.innerHTML);
-        props.onGetFilteredItem(filteredData[0]);
+    const pokemonClickHandler = e => {
+        props.onSelectPokemon(e.target.innerHTML);
     }
 
     return (
-        <>
-            <ul className={styles.names}>
-                {props.data.map(item => {
+        <div className={styles.names}>
+            <ul>
+                {props.pokeList.map(pokemon => {
                     return (
-                        <li key={item.url} onClick={clickHandler}>{item.name}</li>
+                        <li key={pokemon.url} onClick={pokemonClickHandler}>{pokemon.name}</li>
                     );
                 })}
             </ul>
+        </div>
 
-        </>
     );
 };

@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 
 import NamesList from './Components/NamesList';
-import Sprite from './Components/Sprite'
+import Sprite from './Components/Sprite';
+
 const App = () => {
 
-  //'https://pokeapi.co/api/v2/pokemon'
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState({
-    name: 'bulbasaur',
-    url: 'https://pokeapi.co/api/v2/pokemon/1/'
-  });
+  const [list, setList] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState('bulbasaur')
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=151');
-      const JSONResponse = await response.json(); 
-      setData(JSONResponse.results);
+  useEffect(() => { 
+    async function fetchPokemon() { 
+      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+      const jsonResponse = await response.json();
+      setList(jsonResponse.results);
     }
-    fetchData();
+    fetchPokemon();
   }, []);
 
-  const getFilteredItemHandler = item => { 
-    setFilteredData(item);
+  const selectPokemon = pokemon => { 
+    setSelectedPokemon(pokemon);
   }
 
   return (
-    <>
-      <Sprite data={filteredData}/>
-      <NamesList data={data} onGetFilteredItem={getFilteredItemHandler}/>
-    </>
+    <div className={styles.pokedex}>
+      <Sprite selectedPokemon={selectedPokemon} pokeList={list}/>
+      <NamesList pokeList={list} onSelectPokemon={selectPokemon}/>
+    </div>
   );
 }
 

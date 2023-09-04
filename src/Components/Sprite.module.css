@@ -1,0 +1,23 @@
+.sprite{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    height: 40%;
+}
+.screen{
+    background-color: rgb(0, 104, 69);
+    border: 2px solid black;
+    width: 60%;
+    display: grid;
+    place-items: center;
+}
+
+.sprite .screen img{
+    width: 200px;
+}
+
+.details{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
