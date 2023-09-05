@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Main from './Routes/Main';
+import Details from './Components/Details';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const routes = createBrowserRouter([
-  {path:'/', element: <Main/>}
+  {
+    path: '/', element: <Main />, children: [
+      {
+        path: '/pokemon', element: <Details />, loader: () => {
+          return (null);
+        }
+      } 
+  ]}
 ]);
 
 root.render(

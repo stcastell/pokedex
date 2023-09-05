@@ -1,23 +1,22 @@
 .sprite{
-    width: 100%;
+    width: 40%;
     display: grid;
     place-items: center;
-    height: 40%;
 }
 .screen{
-    background-color: rgb(0, 104, 69);
-    border: 2px solid black;
-    width: 60%;
+    width: 90%;
     display: grid;
     place-items: center;
+    border: 3px solid rgb(255, 255, 255);
 }
-
-.sprite .screen img{
-    width: 200px;
+.screen img{
+    background-color: rgb(121, 185, 18);
+    width: 100%;
+    border: 5px solid rgb(0, 0, 0);
 }
-
 .details{
     background-color: black;
     color: white;
     padding: 10px;
+    border-radius: 50px;
 }

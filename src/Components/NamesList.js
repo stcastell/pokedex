@@ -11,7 +11,7 @@ export default function NamesList(props) {
             <ul>
                 {props.pokeList.map(pokemon => {
                     return (
-                        <li key={pokemon.url} onClick={pokemonClickHandler}>{pokemon.name}</li>
+                        <li key={pokemon.url} onClick={pokemonClickHandler}>{pokemon.name.toUpperCase()}</li>
                     );
                 })}
             </ul>

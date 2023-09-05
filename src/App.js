@@ -9,23 +9,26 @@ const App = () => {
   const [list, setList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState('bulbasaur')
 
-  useEffect(() => { 
-    async function fetchPokemon() { 
+  useEffect(() => {
+    async function fetchPokemon() {
       const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
       const jsonResponse = await response.json();
-      setList(jsonResponse.results);
+      setList(await jsonResponse.results);
     }
     fetchPokemon();
   }, []);
 
-  const selectPokemon = pokemon => { 
+  const selectPokemon = pokemon => {
     setSelectedPokemon(pokemon);
   }
 
   return (
     <div className={styles.pokedex}>
-      <Sprite selectedPokemon={selectedPokemon} pokeList={list}/>
-      <NamesList pokeList={list} onSelectPokemon={selectPokemon}/>
+      <div className={styles.container}>
+        <Sprite selectedPokemon={selectedPokemon} pokeList={list} />
+        <NamesList pokeList={list} onSelectPokemon={selectPokemon} />
+      </div>
+      <button className={styles.search_button}>SEARCH</button>
     </div>
   );
 }

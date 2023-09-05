@@ -1,23 +1,22 @@
 .names{
-    color: rgb(31, 31, 31);
-    display: grid;
-    place-items: center;
-    height: 60%;
-    padding: 15px;
+    width: 60%;
+    height: 500px;
 }
 .names ul{
-    margin-top: 20px;
-    background-color: rgb(211, 211, 211);
-    overflow-y: scroll;
-    width: 60%;
-    height: 100%;
-}
-.names li{
-    cursor: pointer;
+    background-color: black;
+    border: 3px solid white;
     padding: 15px;
-    width: 100%;
-
+    height: 100%;
+    overflow-y: scroll;
 }
-.names li:hover{
-    background-color: rgba(0, 0, 0,0.1);
+.names ul li{
+    margin-left: 15px;
+    padding: 5px;
+    border: 3px solid rgba(0, 128, 0,0);
+    width: fit-content;
+    list-style-image: url('../images/pokeball.png');
+}
+.names ul li:hover{
+    border: 3px solid rgb(134, 236, 0);
+    cursor: pointer; 
 }
