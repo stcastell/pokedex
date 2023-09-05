@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export default function Sprite(props) {
 
     const selectedPokemonData = props.pokeList.filter(pokemon => pokemon.name.toUpperCase() === props.selectedPokemon)[0];
+
     const [pkmnUrl, setPkmnUrl] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png');
 
 
@@ -16,7 +17,7 @@ export default function Sprite(props) {
             setPkmnUrl(await jsonResponse.sprites.front_default);
         }
         fetchSelectedPokemon();
-    }, [props.selectedPokemon])
+    }, [props.selectedPokemon, selectedPokemonData]);
 
     const route = useNavigate();
 

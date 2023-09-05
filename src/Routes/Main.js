@@ -3,16 +3,18 @@ import styles from './Main.module.css';
 import { Outlet } from 'react-router-dom';
 
 export default function Main() { 
+
     return (
         <>
             <div className={styles.container}>
-                <App />
+                <App/>
                 <Outlet/>
             </div>
         </>
     );
 };
 
+
 // export async function getPkmnSpecies() { 
-//     const response = await fetch()
+//     const response = await fetch(speciesUrl)
 // };
