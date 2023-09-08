@@ -1,3 +1,8 @@
 .details{
-    border: 1px solid red;
+}
+.button {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 50px;
 }

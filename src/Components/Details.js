@@ -1,10 +1,11 @@
 import styles from './Details.module.css'
 import Modal from '../UI/Modal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLoaderData } from 'react-router-dom';
 
 export default function Details() {
 
   const route = useNavigate();
+  const data = useLoaderData();
 
   const clickHandler = () => {
     route('/');
@@ -12,8 +13,22 @@ export default function Details() {
 
   return (
     <Modal>
-      <h1 className={styles.details}>Hellooo</h1>
-      <button onClick={clickHandler}>BACK</button>
+      <div className={styles.container}>
+        <div className={styles.details}>
+          <div className={styles.image}>
+            <img src={data.sprites.front_default} />
+            <p>N°. {data.id}</p>
+          </div>
+          <div>
+            <h1>{data.name.toUpperCase()}</h1>
+            <h2></h2>
+          </div>
+        </div>
+        <div className={styles.description}>
+
+        </div>
+        <button className={styles.button} onClick={clickHandler}>BACK</button>
+      </div>
     </Modal>
   );
 }

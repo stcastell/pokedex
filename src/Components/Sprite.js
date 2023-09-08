@@ -7,14 +7,19 @@ export default function Sprite(props) {
 
     const selectedPokemonData = props.pokeList.filter(pokemon => pokemon.name.toUpperCase() === props.selectedPokemon)[0];
 
-    const [pkmnUrl, setPkmnUrl] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png');
+    // const [pkmnData, setPkmnData] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png');
+    const [pkmnData, setPkmnData] = useState({
+        sprites: {
+            front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+        }
+    });
 
 
     useEffect(() => {
         async function fetchSelectedPokemon() {
             const response = await fetch(selectedPokemonData.url)
             const jsonResponse = await response.json();
-            setPkmnUrl(await jsonResponse.sprites.front_default);
+            setPkmnData(await jsonResponse);
         }
         fetchSelectedPokemon();
     }, [props.selectedPokemon, selectedPokemonData]);
@@ -22,13 +27,13 @@ export default function Sprite(props) {
     const route = useNavigate();
 
     const clickHandler = () => { 
-        route('/pokemon'); 
+        route(`/pokemon/${pkmnData.id}`); 
     }
 
     return (
         <div className={styles.sprite}>
             <div className={styles.screen}>
-                <motion.img src={pkmnUrl} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+                <motion.img src={pkmnData.sprites.front_default} initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
             </div>
             <button className={styles.details} onClick={clickHandler}>Details</button>
         </div>

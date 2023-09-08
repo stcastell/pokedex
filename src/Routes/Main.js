@@ -15,6 +15,8 @@ export default function Main() {
 };
 
 
-// export async function getPkmnSpecies() { 
-//     const response = await fetch(speciesUrl)
-// };
+export async function loader({params}) { 
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
+    const jsonResponse = await response.json();
+    return (jsonResponse);
+};

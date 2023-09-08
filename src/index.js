@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Main from './Routes/Main';
+import Main, { loader as getPkmnSpecies } from './Routes/Main';
 import Details from './Components/Details';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,9 +11,7 @@ const routes = createBrowserRouter([
   {
     path: '/', element: <Main />, children: [
       {
-        path: '/pokemon', element: <Details />, loader: () => {
-          return (null);
-        }
+        path: '/pokemon/:id', element: <Details />, loader: getPkmnSpecies
       } 
   ]}
 ]);
