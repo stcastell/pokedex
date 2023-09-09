@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Main, { loader as getPkmnSpecies } from './Routes/Main';
-import Details from './Components/Details';
+import Details from './Routes/Details';
+import Search from './Routes/Search';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,9 +11,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const routes = createBrowserRouter([
   {
     path: '/', element: <Main />, children: [
-      {
-        path: '/pokemon/:id', element: <Details />, loader: getPkmnSpecies
-      } 
+      { path: '/pokemon/:id', element: <Details />, loader: getPkmnSpecies },
+      {path:'/search', element:<Search/>}
   ]}
 ]);
 
